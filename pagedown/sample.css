@@ -2,13 +2,13 @@
 
 .wmd-button-bar {
 	width: 100%;
-	padding: 3px 0;
+	padding: 5px 0;
 }
 .wmd-input {
 	/* 604 */
 	width: 598px;
 	height: 250px;
-	margin: 10px 0;
+	margin: 0 0 10px;
 	padding: 2px;
 	border: 1px solid #ccc;
 }

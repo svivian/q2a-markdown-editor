@@ -27,10 +27,10 @@ class qa_markdown_editor
 
 		// IMPORTANT: don't forget to copy the CSS from sample.css to your qa-styles.css!
 		$html = '';
-		$html .= '<div id="wmd-button-bar" class="wmd-button-bar"></div>' . "\n";
-		$html .= '<textarea name="'.$fieldname.'" id="wmd-input" class="wmd-input">'.$content.'</textarea>' . "\n";
+		$html .= '<div id="wmd-button-bar-'.$fieldname.'" class="wmd-button-bar"></div>' . "\n";
+		$html .= '<textarea name="'.$fieldname.'" id="wmd-input-'.$fieldname.'" class="wmd-input">'.$content.'</textarea>' . "\n";
 		$html .= '<h3>Preview</h3>' . "\n";
-		$html .= '<div id="wmd-preview" class="wmd-preview"></div>' . "\n";
+		$html .= '<div id="wmd-preview-'.$fieldname.'" class="wmd-preview"></div>' . "\n";
 		$html .= '<style>.wmd-button > span { background-image: url("'.$wmd_buttons.'") }</style>' . "\n";
 
 //         $html .= '<script src="'.$this->urltoroot.'pagedown/Markdown.Converter.js"></script>' . "\n";
@@ -39,12 +39,6 @@ class qa_markdown_editor
 
 		// comment this script and uncomment the 3 above to use the non-minified code
     	$html .= '<script src="'.$this->urltoroot.'pagedown/markdown.min.js"></script>' . "\n";
-        $html .= '
-			<script>(function () {
-				var converter = Markdown.getSanitizingConverter();
-				var editor = new Markdown.Editor(converter);
-				editor.run();
-			})();</script>' . "\n";
 
 		return array( 'type'=>'custom', 'html'=>$html );
 	}
@@ -58,5 +52,14 @@ class qa_markdown_editor
 			'content' => $html
 		);
 	}
+
+	function load_script($fieldname)
+	{
+		return
+			'var converter = Markdown.getSanitizingConverter();' . "\n" .
+			'var editor = new Markdown.Editor(converter, "-'.$fieldname.'");' . "\n" .
+			'editor.run();' . "\n";
+	}
+
 
 }
