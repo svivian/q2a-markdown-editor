@@ -15,7 +15,10 @@ class qa_markdown_viewer
 
 	function calc_quality($content, $format)
 	{
-		return 1.0;
+		if ( $format == 'markdown' )
+			return 1.0;
+		else
+			return 0.8;
 	}
 
 	function get_html($content, $format, $options)
