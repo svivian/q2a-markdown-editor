@@ -8,6 +8,7 @@ class qa_markdown_editor
 {
 	private $pluginurl;
 	private $cssopt = 'markdown_editor_css';
+	private $convopt = 'markdown_comment';
 
 	function load_module( $directory, $urltoroot )
 	{
@@ -68,27 +69,33 @@ class qa_markdown_editor
 		if ( qa_clicked('markdown_save') )
 		{
 			// save options
-			$hidecss = qa_post_text('hidecss');
+			$hidecss = qa_post_text('md_hidecss') ? '1' : '0';
+			qa_opt($this->cssopt, $hidecss);
+			$convert = qa_post_text('md_comments') ? '1' : '0';
+			qa_opt($this->convopt, $convert);
+
 			$saved_msg = 'Options saved.';
 		}
 
 
-
-
 		return array(
 			'ok' => $saved_msg,
+					'style' => 'wide',
 
 			'fields' => array(
-// 				array(
-// 					'type' => 'custom',
-// 					'html' => $custom,
-// 				),
-
-				'position' => array(
+				'css' => array(
 					'type' => 'checkbox',
-					'label' => 'Don\'t add CSS inline (tick if you added the CSS to your own stylesheet)',
-					'tags' => 'NAME="hidecss"',
+					'label' => 'Don\'t add CSS inline',
+					'tags' => 'NAME="md_hidecss"',
 					'value' => qa_opt($this->cssopt) === '1',
+					'note' => 'Tick if you added the CSS to your own stylesheet (more efficient).',
+				),
+				'comments' => array(
+					'type' => 'checkbox',
+					'label' => 'Plaintext comments',
+					'tags' => 'NAME="md_comments"',
+					'value' => qa_opt($this->convopt) === '1',
+					'note' => 'Sets a post as plaintext when converting answers to comments.',
 				),
 			),
 

@@ -2,12 +2,17 @@
 
 class qa_html_theme_layer extends qa_html_theme_base
 {
+	private $cssopt = 'markdown_editor_css';
 
 	function head_custom()
 	{
 		parent::head_custom();
 
-		$hidecss = qa_opt('markdown_editor_css') === '1';
+		$tmpl = array( 'ask', 'question' );
+		if ( !in_array($this->template, $tmpl) )
+			return;
+
+		$hidecss = qa_opt($this->cssopt) === '1';
 		$wmd_buttons = QA_HTML_THEME_LAYER_URLTOROOT . 'pagedown/wmd-buttons.png';
 
 		$this->output_raw(
