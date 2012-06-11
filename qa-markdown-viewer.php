@@ -6,19 +6,16 @@
 
 class qa_markdown_viewer
 {
-	var $path;
+	private $plugindir;
 
 	function load_module($directory, $urltoroot)
 	{
-		$this->path = $directory;
+		$this->plugindir = $directory;
 	}
 
 	function calc_quality($content, $format)
 	{
-		if ( $format == 'markdown' )
-			return 1.0;
-		else
-			return 0.8;
+		return $format == 'markdown' ? 1.0 : 0.8;
 	}
 
 	function get_html($content, $format, $options)
@@ -29,7 +26,7 @@ class qa_markdown_viewer
 			$content = qa_block_words_replace( $content, $options['blockwordspreg'] );
 		}
 
-		require_once $this->path . 'inc.markdown.php';
+		require_once $this->plugindir . 'inc.markdown.php';
 		$html = Markdown( $content );
 		return qa_sanitize_html($html);
 	}
