@@ -9,6 +9,7 @@ class qa_markdown_editor
 	private $pluginurl;
 	private $cssopt = 'markdown_editor_css';
 	private $convopt = 'markdown_comment';
+	private $hljsopt = 'markdown_highlightjs';
 
 	function load_module( $directory, $urltoroot )
 	{
@@ -73,6 +74,8 @@ class qa_markdown_editor
 			qa_opt($this->cssopt, $hidecss);
 			$convert = qa_post_text('md_comments') ? '1' : '0';
 			qa_opt($this->convopt, $convert);
+			$convert = qa_post_text('md_highlightjs') ? '1' : '0';
+			qa_opt($this->hljsopt, $convert);
 
 			$saved_msg = 'Options saved.';
 		}
@@ -96,6 +99,13 @@ class qa_markdown_editor
 					'tags' => 'NAME="md_comments"',
 					'value' => qa_opt($this->convopt) === '1',
 					'note' => 'Sets a post as plaintext when converting answers to comments.',
+				),
+				'highlightjs' => array(
+					'type' => 'checkbox',
+					'label' => 'Use syntax highlighting',
+					'tags' => 'NAME="md_highlightjs"',
+					'value' => qa_opt($this->hljsopt) === '1',
+					'note' => 'Integrates highlight.js for code blocks.',
 				),
 			),
 

@@ -28,7 +28,7 @@ class qa_markdown_viewer
 
 		require_once $this->plugindir . 'inc.markdown.php';
 		$html = Markdown( $content );
-		return qa_sanitize_html($html);
+		return qa_sanitize_html($html, @$options['linksnewwindow']);
 	}
 
 	function get_text($content, $format, $options)
