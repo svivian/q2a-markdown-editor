@@ -27,7 +27,7 @@ class qa_markdown_events
 		if ( !qa_opt($this->convopt) )
 			return;
 
-		 qa_post_set_content($params['postid'], null, null, '');
+		 qa_post_set_content($params['postid'], null, null, '', null, null, null, qa_get_logged_in_userid());
 	}
 
 }
