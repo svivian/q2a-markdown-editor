@@ -12,9 +12,14 @@ Installation
 -------------------------------------------------
 
 1. Download and extract the `markdown-editor` folder to the `qa-plugins` folder in your Q2A installation.
-2. Copy the CSS from sample.css to the bottom of your theme's current stylesheet.
-3. Log in to your Q2A site as a Super Administrator and head to Admin > Posting.
-4. Set the default editor for questions and answers to 'Markdown Editor'. (The editor does also work for comments, but I would recommend sticking to plain text.)
+2. Log in to your Q2A site as a Super Administrator and head to Admin > Posting.
+3. Set the default editor for questions and answers to 'Markdown Editor'. The editor does also work for comments, but keeping to plain text is recommended.
+
+In Admin > Plugins, you can set three options:
+
+- "Don't add CSS inline" - this will not output the CSS onto the page, to allow putting it in a stylesheet instead which is more efficient. Copy the CSS from sample.css to the bottom of your theme's current stylesheet.
+- "Plaintext comments" - Sets a post as plaintext when converting answers to comments.
+- "Use syntax highlighting" - Integrates [highlight.js](http://softwaremaniacs.org/soft/highlight/en/) for code blocks (including while writing posts). All common programming languages are supported, but you can add more using the [customized download here](http://softwaremaniacs.org/soft/highlight/en/download/). Save the file and overwrite `pagedown/highlight.min.js`. Similarly, any of the custom styles can be added to your stylesheet instead of the provided styles.
 
 
 
