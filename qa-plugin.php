@@ -7,6 +7,7 @@
 	Plugin Date: 2012-06-14
 	Plugin Author: Scott Vivian
 	Plugin Author URI: http://codelair.co.uk/
+	Plugin Contributors: NoahY
 	Plugin License: GPLv3
 	Plugin Minimum Question2Answer Version: 1.4
 	Plugin Update Check URI: https://raw.github.com/svivian/q2a-markdown-editor/master/qa-plugin.php
