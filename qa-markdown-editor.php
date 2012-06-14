@@ -1,6 +1,6 @@
 <?php
 /*
-	Question2Answer Markdown editor plugin, v2
+	Question2Answer Markdown editor plugin, v2.2
 	License: http://www.gnu.org/licenses/gpl.html
 */
 

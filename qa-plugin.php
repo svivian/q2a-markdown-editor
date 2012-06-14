@@ -2,13 +2,14 @@
 /*
 	Plugin Name: Markdown Editor
 	Plugin URI: https://github.com/svivian/q2a-markdown-editor
-	Plugin Description: Markdown plugin for simple text-based markup
-	Plugin Version: 2
-	Plugin Date: 2011-07-15
+	Plugin Description: Markdown editor plugin for simple text-based markup
+	Plugin Version: 2.2
+	Plugin Date: 2012-06-14
 	Plugin Author: Scott Vivian
 	Plugin Author URI: http://codelair.co.uk/
 	Plugin License: GPLv3
-	Plugin Minimum Question2Answer Version: 1.3
+	Plugin Minimum Question2Answer Version: 1.4
+	Plugin Update Check URI: https://raw.github.com/svivian/q2a-markdown-editor/master/qa-plugin.php
 
 	This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

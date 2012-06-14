@@ -1,4 +1,8 @@
 <?php
+/*
+	Question2Answer Markdown editor plugin, v2.2
+	License: http://www.gnu.org/licenses/gpl.html
+*/
 
 class qa_html_theme_layer extends qa_html_theme_base
 {
