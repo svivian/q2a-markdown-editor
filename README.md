@@ -4,7 +4,7 @@ Markdown Editor plugin for Question2Answer
 
 This is an editor plugin for popular open source Q&A platform, [Question2Answer](http://www.question2answer.org). It uses Markdown to format posts, which is a simple text-friendly markup language using for example \*\*bold\*\* for **bold text** or \> for quoting sources.
 
-The plugin uses modified versions of the PageDown scripts (released by Stakc Overflow) for the editor and live preview respectively.
+The plugin uses modified versions of the PageDown scripts (released by Stack Overflow) for the editor and live preview respectively.
 
 
 
