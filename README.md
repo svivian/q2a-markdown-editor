@@ -17,9 +17,9 @@ Installation
 
 In Admin > Plugins, you can set three options:
 
-- "Don't add CSS inline" - this will not output the CSS onto the page, to allow putting it in a stylesheet instead which is more efficient. Copy the CSS from sample.css to the bottom of your theme's current stylesheet.
+- "Don't add CSS inline" - this will not output the CSS onto the page, to allow putting it in a stylesheet instead which is more efficient. Copy the CSS from `pagedown/wmd.css` to the bottom of your theme's current stylesheet.
 - "Plaintext comments" - Sets a post as plaintext when converting answers to comments.
-- "Use syntax highlighting" - Integrates [highlight.js](http://softwaremaniacs.org/soft/highlight/en/) for code blocks (including while writing posts). All common programming languages are supported, but you can add more using the [customized download here](http://softwaremaniacs.org/soft/highlight/en/download/). Save the file and overwrite `pagedown/highlight.min.js`. Similarly, any of the custom styles can be added to your stylesheet instead of the provided styles.
+- "Use syntax highlighting" - Integrates [highlight.js](http://softwaremaniacs.org/soft/highlight/en/) for code blocks (including while writing posts). All common programming languages are supported, but you can add more using the [customized download here](http://softwaremaniacs.org/soft/highlight/en/download/). Save the file and overwrite `pagedown/highlight.min.js`. If you ticked the box for CSS above, copy the CSS from `pagedown/highlightjs.css` to the bottom of your theme's current stylesheet.
 
 
 
