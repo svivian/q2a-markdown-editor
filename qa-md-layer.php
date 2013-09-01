@@ -22,7 +22,7 @@ class qa_html_theme_layer extends qa_html_theme_base
 		$wmd_buttons = QA_HTML_THEME_LAYER_URLTOROOT . 'pagedown/wmd-buttons.png';
 
 		$this->output_raw(
-			"<style>\n" .
+			"<style type=\"text/css\">\n" .
 			".wmd-button > span { background-image: url('$wmd_buttons') }\n"
 		);
 
@@ -46,7 +46,7 @@ class qa_html_theme_layer extends qa_html_theme_base
 		if ( $usehljs )
 		{
 			$this->output_raw(
-				"<script src=\"" . QA_HTML_THEME_LAYER_URLTOROOT . "pagedown/highlight.min.js\"></script>\n" .
+				"<script type=\"text/javascript\" src=\"" . QA_HTML_THEME_LAYER_URLTOROOT . "pagedown/highlight.min.js\"></script>\n" .
 
 				"<script type=\"text/javascript\">\n" .
 				"$(function(){\n" .

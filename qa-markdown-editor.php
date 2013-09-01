@@ -24,16 +24,16 @@ class qa_markdown_editor
 	function get_field(&$qa_content, $content, $format, $fieldname, $rows, $autofocus)
 	{
 		$html = '<div id="wmd-button-bar-'.$fieldname.'" class="wmd-button-bar"></div>' . "\n";
-		$html .= '<textarea name="'.$fieldname.'" id="wmd-input-'.$fieldname.'" class="wmd-input">'.$content.'</textarea>' . "\n";
+		$html .= '<textarea name="'.$fieldname.'" id="wmd-input-'.$fieldname.'" class="wmd-input" cols="40" rows="20">'.$content.'</textarea>' . "\n";
 		$html .= '<h3>Preview</h3>' . "\n";
 		$html .= '<div id="wmd-preview-'.$fieldname.'" class="wmd-preview"></div>' . "\n";
 
-        // $html .= '<script src="'.$this->pluginurl.'pagedown/Markdown.Converter.js"></script>' . "\n";
-        // $html .= '<script src="'.$this->pluginurl.'pagedown/Markdown.Sanitizer.js"></script>' . "\n";
-        // $html .= '<script src="'.$this->pluginurl.'pagedown/Markdown.Editor.js"></script>' . "\n";
+        // $html .= '<script type="text/javascript" src="'.$this->pluginurl.'pagedown/Markdown.Converter.js"></script>' . "\n";
+        // $html .= '<script type="text/javascript" src="'.$this->pluginurl.'pagedown/Markdown.Sanitizer.js"></script>' . "\n";
+        // $html .= '<script type="text/javascript" src="'.$this->pluginurl.'pagedown/Markdown.Editor.js"></script>' . "\n";
 
 		// comment this script and uncomment the 3 above to use the non-minified code
-    	$html .= '<script src="'.$this->pluginurl.'pagedown/markdown.min.js"></script>' . "\n";
+    	$html .= '<script type="text/javascript" src="'.$this->pluginurl.'pagedown/markdown.min.js"></script>' . "\n";
 
 		return array( 'type'=>'custom', 'html'=>$html );
 	}
