@@ -24,7 +24,7 @@ class qa_markdown_editor
 	function get_field(&$qa_content, $content, $format, $fieldname, $rows, $autofocus)
 	{
 		$html = '<div id="wmd-button-bar-'.$fieldname.'" class="wmd-button-bar"></div>' . "\n";
-		$html .= '<textarea name="'.$fieldname.'" id="wmd-input-'.$fieldname.'" class="wmd-input">'.$content.'</textarea>' . "\n";
+		$html .= '<textarea name="'.$fieldname.'" id="wmd-input-'.$fieldname.'" class="wmd-input" cols="40" rows="20">'.$content.'</textarea>' . "\n";
 		$html .= '<h3>Preview</h3>' . "\n";
 		$html .= '<div id="wmd-preview-'.$fieldname.'" class="wmd-preview"></div>' . "\n";
 
