@@ -25,7 +25,7 @@ class qa_markdown_editor
 	{
 		$html = '<div id="wmd-button-bar-'.$fieldname.'" class="wmd-button-bar"></div>' . "\n";
 		$html .= '<textarea name="'.$fieldname.'" id="wmd-input-'.$fieldname.'" class="wmd-input">'.$content.'</textarea>' . "\n";
-		$html .= '<h3>Preview</h3>' . "\n";
+		$html .= '<h3>'.qa_lang_html('markdown/preview').'</h3>' . "\n";
 		$html .= '<div id="wmd-preview-'.$fieldname.'" class="wmd-preview"></div>' . "\n";
 
         // $html .= '<script src="'.$this->pluginurl.'pagedown/Markdown.Converter.js"></script>' . "\n";
@@ -71,7 +71,7 @@ class qa_markdown_editor
 			$convert = qa_post_text('md_highlightjs') ? '1' : '0';
 			qa_opt($this->hljsopt, $convert);
 
-			$saved_msg = 'Options saved.';
+			$saved_msg = qa_lang_html('admin/options_saved');
 		}
 
 
@@ -82,31 +82,31 @@ class qa_markdown_editor
 			'fields' => array(
 				'css' => array(
 					'type' => 'checkbox',
-					'label' => 'Don\'t add CSS inline',
+					'label' => qa_lang_html('markdown/admin_hidecss'),
 					'tags' => 'NAME="md_hidecss"',
 					'value' => qa_opt($this->cssopt) === '1',
-					'note' => 'Tick if you added the CSS to your own stylesheet (more efficient).',
+					'note' => qa_lang_html('markdown/admin_hidecss_note'),
 				),
 				'comments' => array(
 					'type' => 'checkbox',
-					'label' => 'Plaintext comments',
+					'label' => qa_lang_html('markdown/admin_comments'),
 					'tags' => 'NAME="md_comments"',
 					'value' => qa_opt($this->convopt) === '1',
-					'note' => 'Sets a post as plaintext when converting answers to comments.',
+					'note' => qa_lang_html('markdown/admin_comments_note'),
 				),
 				'highlightjs' => array(
 					'type' => 'checkbox',
-					'label' => 'Use syntax highlighting',
+					'label' => qa_lang_html('markdown/admin_syntax'),
 					'tags' => 'NAME="md_highlightjs"',
 					'value' => qa_opt($this->hljsopt) === '1',
-					'note' => 'Integrates highlight.js for code blocks.',
+					'note' => qa_lang_html('markdown/admin_syntax_note'),
 				),
 			),
 
 			'buttons' => array(
 				'save' => array(
 					'tags' => 'NAME="markdown_save"',
-					'label' => 'Save options',
+					'label' => qa_lang_html('admin/save_options_button'),
 					'value' => '1',
 				),
 			),
