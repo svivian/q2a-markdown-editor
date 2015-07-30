@@ -18,16 +18,14 @@ class qa_markdown_events
 		$this->urltoroot = $urltoroot;
 	}
 
-
-	function process_event( $event, $userid, $handle, $cookieid, $params )
+	public function process_event($event, $userid, $handle, $cookieid, $params)
 	{
 		// check we have the correct event and the option is set
-		if ( $event != 'a_to_c' )
+		if ($event != 'a_to_c')
 			return;
-		if ( !qa_opt($this->convopt) )
+		if (!qa_opt($this->convopt))
 			return;
 
 		 qa_post_set_content($params['postid'], null, null, '', null, null, null, qa_get_logged_in_userid());
 	}
-
 }

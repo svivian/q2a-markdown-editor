@@ -11,17 +11,17 @@ class qa_markdown_editor
 	private $convopt = 'markdown_comment';
 	private $hljsopt = 'markdown_highlightjs';
 
-	function load_module( $directory, $urltoroot )
+	public function load_module($directory, $urltoroot)
 	{
 		$this->pluginurl = $urltoroot;
 	}
 
-	function calc_quality( $content, $format )
+	public function calc_quality($content, $format)
 	{
 		return $format == 'markdown' ? 1.0 : 0.8;
 	}
 
-	function get_field(&$qa_content, $content, $format, $fieldname, $rows, $autofocus)
+	public function get_field(&$qa_content, $content, $format, $fieldname, $rows, $autofocus)
 	{
 		$html = '<div id="wmd-button-bar-'.$fieldname.'" class="wmd-button-bar"></div>' . "\n";
 		$html .= '<textarea name="'.$fieldname.'" id="wmd-input-'.$fieldname.'" class="wmd-input">'.$content.'</textarea>' . "\n";
@@ -35,10 +35,10 @@ class qa_markdown_editor
 		// comment this script and uncomment the 3 above to use the non-minified code
     	$html .= '<script src="'.$this->pluginurl.'pagedown/markdown.min.js"></script>' . "\n";
 
-		return array( 'type'=>'custom', 'html'=>$html );
+		return array('type'=>'custom', 'html'=>$html);
 	}
 
-	function read_post($fieldname)
+	public function read_post($fieldname)
 	{
 		$html = $this->_my_qa_post_text($fieldname);
 
@@ -48,7 +48,7 @@ class qa_markdown_editor
 		);
 	}
 
-	function load_script($fieldname)
+	public function load_script($fieldname)
 	{
 		return
 			'var converter = Markdown.getSanitizingConverter();' . "\n" .
@@ -58,12 +58,11 @@ class qa_markdown_editor
 
 
 	// set admin options
-	function admin_form( &$qa_content )
+	public function admin_form(&$qa_content)
 	{
 		$saved_msg = null;
 
-		if ( qa_clicked('markdown_save') )
-		{
+		if (qa_clicked('markdown_save')) {
 			// save options
 			$hidecss = qa_post_text('md_hidecss') ? '1' : '0';
 			qa_opt($this->cssopt, $hidecss);
@@ -116,10 +115,8 @@ class qa_markdown_editor
 
 
 	// copy of qa-base.php > qa_post_text, with trim() function removed.
-	function _my_qa_post_text($field)
+	private function _my_qa_post_text($field)
 	{
-		return isset($_POST[$field]) ? preg_replace( '/\r\n?/', "\n", qa_gpc_to_string($_POST[$field]) ) : null;
+		return isset($_POST[$field]) ? preg_replace('/\r\n?/', "\n", qa_gpc_to_string($_POST[$field])) : null;
 	}
-
-
 }

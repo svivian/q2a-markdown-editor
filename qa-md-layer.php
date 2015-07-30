@@ -9,12 +9,12 @@ class qa_html_theme_layer extends qa_html_theme_base
 	private $cssopt = 'markdown_editor_css';
 	private $hljsopt = 'markdown_highlightjs';
 
-	function head_custom()
+	public function head_custom()
 	{
 		parent::head_custom();
 
-		$tmpl = array( 'ask', 'question' );
-		if ( !in_array($this->template, $tmpl) )
+		$tmpl = array('ask', 'question');
+		if (!in_array($this->template, $tmpl))
 			return;
 
 		$hidecss = qa_opt($this->cssopt) === '1';
@@ -27,15 +27,14 @@ class qa_html_theme_layer extends qa_html_theme_base
 		);
 
 		// display CSS for Markdown Editor
-		if ( !$hidecss )
-		{
-			$cssWMD = file_get_contents( QA_HTML_THEME_LAYER_DIRECTORY.'pagedown/wmd.css' );
+		if (!$hidecss) {
+			$cssWMD = file_get_contents(QA_HTML_THEME_LAYER_DIRECTORY.'pagedown/wmd.css');
 			$this->output_raw($cssWMD);
 
 			// display CSS for HighlightJS
-			if ( $usehljs )
+			if ($usehljs)
 			{
-				$cssHJS = file_get_contents( QA_HTML_THEME_LAYER_DIRECTORY.'pagedown/highlightjs.css' );
+				$cssHJS = file_get_contents(QA_HTML_THEME_LAYER_DIRECTORY.'pagedown/highlightjs.css');
 				$this->output_raw($cssHJS);
 			}
 		}
@@ -43,8 +42,7 @@ class qa_html_theme_layer extends qa_html_theme_base
 		$this->output_raw("</style>\n\n");
 
 		// set up HighlightJS
-		if ( $usehljs )
-		{
+		if ($usehljs) {
 			$js = file_get_contents(QA_HTML_THEME_LAYER_DIRECTORY.'pagedown/highlightjs-run.js');
 
 			$this->output_raw(
@@ -53,5 +51,4 @@ class qa_html_theme_layer extends qa_html_theme_base
 			);
 		}
 	}
-
 }
