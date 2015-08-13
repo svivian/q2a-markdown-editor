@@ -10,6 +10,7 @@ class qa_markdown_editor
 	private $cssopt = 'markdown_editor_css';
 	private $convopt = 'markdown_comment';
 	private $hljsopt = 'markdown_highlightjs';
+	private $allowed_template_opt = 'markdown_editor_allowed_template';
 
 	public function load_module($directory, $urltoroot)
 	{
@@ -70,6 +71,8 @@ class qa_markdown_editor
 			qa_opt($this->convopt, $convert);
 			$convert = qa_post_text('md_highlightjs') ? '1' : '0';
 			qa_opt($this->hljsopt, $convert);
+			$allowed_template = qa_post_text('allowed_template');
+			qa_opt($this->allowed_template_opt , $allowed_template);
 
 			$saved_msg = qa_lang_html('admin/options_saved');
 		}
@@ -101,6 +104,13 @@ class qa_markdown_editor
 					'value' => qa_opt($this->hljsopt) === '1',
 					'note' => qa_lang_html('markdown/admin_syntax_note'),
 				),
+				'allowed_template' => array(
+					'type' => 'text',
+					'label' => qa_lang_html('markdown/admin_allowed_template'),
+					'tags' => 'NAME="allowed_template"',
+					'value' => qa_opt($this->allowed_template_opt),
+					'note' => qa_lang_html('markdown/admin_allowed_template_note'),
+				),
 			),
 
 			'buttons' => array(
@@ -113,6 +123,17 @@ class qa_markdown_editor
 		);
 	}
 
+	function option_default($option)
+	{
+		switch ($option) {
+			case $this->allowed_template_opt :
+				return 'ask,question';
+				break;
+			default:
+				return null;
+				break;
+		}
+	}
 
 	// copy of qa-base.php > qa_post_text, with trim() function removed.
 	private function _my_qa_post_text($field)

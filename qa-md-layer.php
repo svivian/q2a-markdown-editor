@@ -8,12 +8,21 @@ class qa_html_theme_layer extends qa_html_theme_base
 {
 	private $cssopt = 'markdown_editor_css';
 	private $hljsopt = 'markdown_highlightjs';
+	private $allowed_template_opt = 'markdown_editor_allowed_template';
 
 	public function head_custom()
 	{
 		parent::head_custom();
 
-		$tmpl = array('ask', 'question');
+		$allowed_tmpl = qa_opt( $this->allowed_template_opt );
+
+		if ( strlen( $allowed_tmpl ) ) {
+			$tmpl = explode( ',', $allowed_tmpl );
+		} else {
+			//fall back for the defaults if the option is not set from the admin panel
+			$tmpl = array( 'ask', 'question' );
+		}
+
 		if (!in_array($this->template, $tmpl))
 			return;
 
