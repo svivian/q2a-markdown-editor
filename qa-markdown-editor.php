@@ -10,7 +10,7 @@ class qa_markdown_editor
 	private $cssopt = 'markdown_editor_css';
 	private $convopt = 'markdown_comment';
 	private $hljsopt = 'markdown_highlightjs';
-	private $allowed_template_opt = 'markdown_editor_allowed_template';
+	private $allowed_templates_opt = 'markdown_editor_allowed_templates';
 
 	public function load_module($directory, $urltoroot)
 	{
@@ -71,8 +71,8 @@ class qa_markdown_editor
 			qa_opt($this->convopt, $convert);
 			$convert = qa_post_text('md_highlightjs') ? '1' : '0';
 			qa_opt($this->hljsopt, $convert);
-			$allowed_template = qa_post_text('allowed_template');
-			qa_opt($this->allowed_template_opt , $allowed_template);
+			$allowed_templates = qa_post_text('allowed_templates');
+			qa_opt($this->allowed_templates_opt , $allowed_templates);
 
 			$saved_msg = qa_lang_html('admin/options_saved');
 		}
@@ -106,10 +106,10 @@ class qa_markdown_editor
 				),
 				'allowed_template' => array(
 					'type' => 'text',
-					'label' => qa_lang_html('markdown/admin_allowed_template'),
-					'tags' => 'NAME="allowed_template"',
-					'value' => qa_opt($this->allowed_template_opt),
-					'note' => qa_lang_html('markdown/admin_allowed_template_note'),
+					'label' => qa_lang_html('markdown/admin_allowed_templates'),
+					'tags' => 'NAME="allowed_templates"',
+					'value' => qa_opt($this->allowed_templates_opt),
+					'note' => qa_lang_html('markdown/admin_allowed_templates_note'),
 				),
 			),
 
@@ -126,7 +126,7 @@ class qa_markdown_editor
 	function option_default($option)
 	{
 		switch ($option) {
-			case $this->allowed_template_opt :
+			case $this->allowed_templates_opt :
 				return 'ask,question';
 				break;
 			default:
