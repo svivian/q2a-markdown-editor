@@ -25,10 +25,10 @@ class qa_markdown_viewer
 			$content = qa_block_words_replace($content, $options['blockwordspreg']);
 		}
 
-		require_once $this->plugindir . 'parsedown/Parsedown.php';
-		$md = new Parsedown();
-		$md->setBreaksEnabled(true);
-		$html = $md->text($content);
+		// include customized Markdown parser
+		require_once 'MyMarkdown.php';
+		$md = new MyMarkdown();
+		$html = $md->parse($content);
 
 		return qa_sanitize_html($html, @$options['linksnewwindow']);
 	}

@@ -1,11 +1,9 @@
-
 Markdown Editor plugin for Question2Answer
 =================================================
 
 This is an editor plugin for popular open source Q&A platform, [Question2Answer](http://www.question2answer.org). It uses Markdown to format posts, which is a simple text-friendly markup language using for example \*\*bold\*\* for **bold text** or \> for quoting sources.
 
 The plugin uses modified versions of the PageDown scripts (released by Stack Overflow) for the editor and live preview respectively.
-
 
 
 Installation
@@ -23,7 +21,6 @@ In Admin > Plugins, you can set three options:
 - "Use syntax highlighting" - Integrates [highlight.js](http://softwaremaniacs.org/soft/highlight/en/) for code blocks (including while writing posts). All common programming languages are supported, but you can add more using the [customized download here](http://softwaremaniacs.org/soft/highlight/en/download/). Save the file and overwrite `pagedown/highlight.min.js`. If you ticked the box for CSS above, copy the CSS from `pagedown/highlightjs.css` to the bottom of your theme's current stylesheet.
 
 
-
 Extra bits
 -------------------------------------------------
 
@@ -34,10 +31,9 @@ Extra bits
 (Make sure to change `qa_` above to your installation's table prefix if it is different.)
 
 
-
 Pay What You Like
 -------------------------------------------------
 
-Most of my code is released under the open source GPLv3 license, and provided with a 'Pay What You Like' approach. Feel free to download and modify the plugins/themes to suit your needs, and I hope you value them enough to make a small donation of a few dollars or more.
+Most of my code is released under the open source GPLv3 license, and provided with a 'Pay What You Like' approach. Feel free to download and modify the plugins/themes to suit your needs, and I hope you value them enough to donate a few dollars.
 
 ### [Donate here](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4R5SHBNM3UDLU)
