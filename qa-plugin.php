@@ -3,8 +3,8 @@
 	Plugin Name: Markdown Editor
 	Plugin URI: https://github.com/svivian/q2a-markdown-editor
 	Plugin Description: Markdown editor plugin for simple text-based markup
-	Plugin Version: 2.5
-	Plugin Date: 2015-07-30
+	Plugin Version: 2.5.1
+	Plugin Date: 2016-06-21
 	Plugin Author: Scott Vivian
 	Plugin Author URI: http://codelair.com/
 	Plugin Contributors: NoahY

@@ -2,6 +2,8 @@
 
 class MyMarkdown extends \cebe\markdown\Markdown
 {
+	use \cebe\markdown\inline\UrlLinkTrait;
+
 	/**
 	 * Handle new lines
 	 */

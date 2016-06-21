@@ -21,7 +21,7 @@ class qa_markdown_viewer
 	public function get_html($content, $format, $options)
 	{
 		if (isset($options['blockwordspreg'])) {
-			require_once QA_INCLUDE_DIR.'qa-util-string.php';
+			require_once QA_INCLUDE_DIR.'util/string.php';
 			$content = qa_block_words_replace($content, $options['blockwordspreg']);
 		}
 
