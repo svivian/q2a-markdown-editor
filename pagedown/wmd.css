@@ -20,6 +20,10 @@
 	border: 2px dashed #ccc;
 }
 
+.wmd-preview img, .entry-content img {
+	max-width: 100%
+}
+
 .qa-q-view-content pre,
 .qa-a-item-content pre,
 .wmd-preview pre {

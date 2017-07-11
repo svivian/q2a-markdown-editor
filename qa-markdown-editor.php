@@ -10,6 +10,7 @@ class qa_markdown_editor
 	private $cssopt = 'markdown_editor_css';
 	private $convopt = 'markdown_comment';
 	private $hljsopt = 'markdown_highlightjs';
+	private $impuplopt = 'markdown_uploadimage';
 
 	public function load_module($directory, $urltoroot)
 	{
@@ -27,6 +28,9 @@ class qa_markdown_editor
 		$html .= '<textarea name="'.$fieldname.'" id="wmd-input-'.$fieldname.'" class="wmd-input">'.$content.'</textarea>' . "\n";
 		$html .= '<h3>'.qa_lang_html('markdown/preview').'</h3>' . "\n";
 		$html .= '<div id="wmd-preview-'.$fieldname.'" class="wmd-preview"></div>' . "\n";
+		$imageUploadUrl = qa_js(qa_path('qa-markdown-upload'));
+		$uploadimg = qa_opt('markdown_uploadimage');
+		$html .= "<script>var image_upload_path=$imageUploadUrl; var image_upload_enabled=$uploadimg;</script>";
 
         // $html .= '<script src="'.$this->pluginurl.'pagedown/Markdown.Converter.js"></script>' . "\n";
         // $html .= '<script src="'.$this->pluginurl.'pagedown/Markdown.Sanitizer.js"></script>' . "\n";
@@ -70,6 +74,8 @@ class qa_markdown_editor
 			qa_opt($this->convopt, $convert);
 			$convert = qa_post_text('md_highlightjs') ? '1' : '0';
 			qa_opt($this->hljsopt, $convert);
+			$convert = qa_post_text('md_uploadimage') ? '1' : '0';
+			qa_opt($this->impuplopt, $convert);
 
 			$saved_msg = qa_lang_html('admin/options_saved');
 		}
@@ -101,6 +107,13 @@ class qa_markdown_editor
 					'value' => qa_opt($this->hljsopt) === '1',
 					'note' => qa_lang_html('markdown/admin_syntax_note'),
 				),
+				'uploadimage' => array(
+					'type' => 'checkbox',
+					'label' => qa_lang_html('markdown/admin_image'),
+					'tags' => 'NAME="md_uploadimage"',
+					'value' => qa_opt($this->impuplopt) === '1',
+					'note' => qa_lang_html('markdown/admin_image_note'),
+				)
 			),
 
 			'buttons' => array(

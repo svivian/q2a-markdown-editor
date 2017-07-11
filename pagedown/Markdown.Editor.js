@@ -36,7 +36,7 @@
 
         image: "Image <img> Ctrl+G",
         imagedescription: "",
-        imagedialog: '<h3 style="margin-top:0">Enter the image URL.</h3>',
+        imagedialog: '<h3 style="margin-top:0">' + (image_upload_enabled ? 'Upload an image or enter its URL.' : 'Enter the image URL.') + '</h3>',
 
         olist: "Numbered List <ol> Ctrl+O",
         ulist: "Bulleted List <ul> Ctrl+U",
@@ -1060,14 +1060,18 @@
     // text: The html for the input box.
     // defaultInputText: The default value that appears in the input box.
     // callback: The function which is executed when the prompt is dismissed, either via OK or Cancel.
+    // showImagePicker: Boolean indicating whether to show an image picker
     //      It receives a single argument; either the entered text (if OK was chosen) or null (if Cancel
     //      was chosen).
-    ui.prompt = function (text, defaultInputText, callback) {
+    ui.prompt = function (text, defaultInputText, callback, showImagePicker) {
 
         // These variables need to be declared at this level since they are used
         // in multiple functions.
-        var dialog;         // The dialog box.
-        var input;         // The text box where you enter the hyperlink.
+        var dialog;             // The dialog box.
+        var input;              // The text box where you enter the hyperlink.
+        var errorBox;           // A text box to show any upload errors
+        var imagePicker;        // The file picker used for selecting images
+        var requestInProgress;  // Indicates if an ajax request is in progress
 
 
         if (defaultInputText === undefined) {
@@ -1088,14 +1092,46 @@
         // Dismisses the hyperlink input box.
         // isCancel is true if we don't care about the input text.
         // isCancel is false if we are going to keep the text.
-        var close = function (isCancel) {
+        var close = function (isCancel, form) {
             util.removeEvent(doc.body, "keyup", checkEscape);
+
             var text = input.value;
 
             if (isCancel) {
                 text = null;
             }
             else {
+                // Upload an image if it was selected and return an error if one exists
+                if (showImagePicker && imagePicker.files[0]) {
+                    // Prevent multiple requests from being inflight at once from multiple button clicks
+                    if (!requestInProgress) {
+                        requestInProgress = true;
+                        $.ajax({
+                            url: image_upload_path,
+                            type: 'POST',
+                            data: new FormData(form),
+                            contentType: false,
+                            cache: false,
+                            processData: false,
+                            success: function(data) {
+                                requestInProgress = false;
+                                errorBox.innerHTML = data.error;
+
+                                if (!data.error){
+                                    text = data.url;
+                                    dialog.parentNode.removeChild(dialog);
+                                    callback(text);
+                                }
+                            },
+                            error: function(data) {
+                                requestInProgress = false;
+                                errorBox.innerHTML('There was an error processing your request.');
+                            }
+                        });
+                        return;
+                    }
+                }
+
                 // Fixes common pasting errors.
                 text = text.replace(/^http:\/\/(https?|ftp):\/\//, '$1://');
                 if (!/^(?:https?|ftp):\/\//.test(text))
@@ -1139,7 +1175,28 @@
             style.position = "relative";
             dialog.appendChild(form);
 
-            // The input text box
+            // The image picker
+            if (showImagePicker) {
+                imagePicker = doc.createElement("input");
+                imagePicker.type = "file";
+                imagePicker.name = "image";
+                imagePicker.accept = "image/x-png,image/gif,image/jpeg"
+                style = imagePicker.style;
+                style.display = "block";
+                style.width = "80%";
+                style.marginLeft = style.marginRight = "auto";
+
+                form.appendChild(imagePicker);
+
+                errorBox = doc.createElement("p");
+                style = errorBox.style;
+                style.clear = "both";
+                style.color = "red";
+
+                form.appendChild(errorBox);
+            }
+
+            // The input box
             input = doc.createElement("input");
             input.type = "text";
             input.value = defaultInputText;
@@ -1152,7 +1209,7 @@
             // The ok button
             var okButton = doc.createElement("input");
             okButton.type = "button";
-            okButton.onclick = function () { return close(false); };
+            okButton.onclick = function () { return close(false, form); };
             okButton.value = "OK";
             style = okButton.style;
             style.margin = "10px";
@@ -1866,7 +1923,7 @@
 
             if (isImage) {
                 if (!this.hooks.insertImageDialog(linkEnteredCallback))
-                    ui.prompt(this.getString("imagedialog"), imageDefaultText, linkEnteredCallback);
+                    ui.prompt(this.getString("imagedialog"), imageDefaultText, linkEnteredCallback, image_upload_enabled);
             }
             else {
                 ui.prompt(this.getString("linkdialog"), linkDefaultText, linkEnteredCallback);

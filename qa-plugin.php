@@ -32,6 +32,7 @@ if (!defined('QA_VERSION')) exit;
 qa_register_plugin_module('editor', 'qa-markdown-editor.php', 'qa_markdown_editor', 'Markdown Editor');
 qa_register_plugin_module('viewer', 'qa-markdown-viewer.php', 'qa_markdown_viewer', 'Markdown Viewer');
 qa_register_plugin_module('event', 'qa-md-events.php', 'qa_markdown_events', 'Markdown events');
+qa_register_plugin_module('page', 'qa-markdown-upload.php', 'qa_markdown_upload', 'Markdown upload');
 qa_register_plugin_layer('qa-md-layer.php', 'Markdown Editor layer');
 qa_register_plugin_phrases('qa-md-lang-*.php', 'markdown');
 
