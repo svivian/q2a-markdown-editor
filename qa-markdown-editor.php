@@ -22,14 +22,29 @@ class qa_markdown_editor
 		return $format == 'markdown' ? 1.0 : 0.8;
 	}
 
+	public function option_default($option)
+	{
+		$defaults = [
+			$this->cssopt => 0,
+			$this->convopt => 1,
+			$this->hljsopt => 0,
+			$this->impuplopt => 0,
+		];
+
+		if (isset($defaults[$opt])) {
+			return $defaults[$opt];
+		}
+	}
+
 	public function get_field(&$qa_content, $content, $format, $fieldname, $rows, $autofocus)
 	{
 		$html = '<div id="wmd-button-bar-'.$fieldname.'" class="wmd-button-bar"></div>' . "\n";
 		$html .= '<textarea name="'.$fieldname.'" id="wmd-input-'.$fieldname.'" class="wmd-input">'.$content.'</textarea>' . "\n";
 		$html .= '<h3>'.qa_lang_html('markdown/preview').'</h3>' . "\n";
 		$html .= '<div id="wmd-preview-'.$fieldname.'" class="wmd-preview"></div>' . "\n";
+
 		$imageUploadUrl = qa_js(qa_path('qa-markdown-upload'));
-		$uploadimg = qa_opt('markdown_uploadimage');
+		$uploadimg = (int) qa_opt($this->impuplopt);
 		$html .= "<script>var image_upload_path=$imageUploadUrl; var image_upload_enabled=$uploadimg;</script>";
 
         // $html .= '<script src="'.$this->pluginurl.'pagedown/Markdown.Converter.js"></script>' . "\n";
