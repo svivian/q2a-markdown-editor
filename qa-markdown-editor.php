@@ -22,7 +22,7 @@ class qa_markdown_editor
 		return $format == 'markdown' ? 1.0 : 0.8;
 	}
 
-	public function option_default($option)
+	public function option_default($opt)
 	{
 		$defaults = [
 			$this->cssopt => 0,
@@ -52,7 +52,7 @@ class qa_markdown_editor
         // $html .= '<script src="'.$this->pluginurl.'pagedown/Markdown.Editor.js"></script>' . "\n";
 
 		// comment this script and uncomment the 3 above to use the non-minified code
-    	$html .= '<script src="'.$this->pluginurl.'pagedown/markdown.min.js"></script>' . "\n";
+    	$html .= '<script src="'.$this->pluginurl.'pagedown/markdown.min.js?v=2.6.2"></script>' . "\n";
 
 		return array('type'=>'custom', 'html'=>$html);
 	}
