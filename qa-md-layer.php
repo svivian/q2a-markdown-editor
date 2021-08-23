@@ -13,7 +13,7 @@ class qa_html_theme_layer extends qa_html_theme_base
 	{
 		parent::head_custom();
 
-		$tmpl = array('ask', 'question');
+		$tmpl = array('ask', 'question', 'blog-new');
 		if (!in_array($this->template, $tmpl))
 			return;
 
